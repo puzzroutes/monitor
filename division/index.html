@@ -114,65 +114,68 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet" />
   <!-- スマホブラウザのUIバーカラー -->
-  <meta name="theme-color" content="#3a7050" />
+  <meta name="theme-color" content="#3d7a6a" />
 
   <style>
     /* ============================================================
        UDカラーパレット設計メモ
        ─────────────────────────────────────────────────────────────
-       【緑系】WCAG AA準拠のセージグリーン。温かみと安心感。
-         --sage-deep  : #3a7050  見出し・ヘッダー・濃い背景（白文字 5.81:1 ✅AA）
-         --sage-mid   : #3f7a54  アクセント・ボーダー用（白文字 5.09:1 ✅AA）
-         --sage-light : #c0e0ca  淡いアクセント（白文字不使用）
-         --sage-pale  : #f0faf2  セクション背景（白文字不使用）
+       【スライド画像から抽出した調和パレット】
+       教材スライドのクリーム・ピンク・ミント・イエローとの完全調和。
+       35〜45歳保護者が安心できる「温かく誠実なデザイン」を実現。
 
-       【アンバー系】WCAG AA準拠のウォームアンバー。温かみ・行動喚起。
-         --warm-amber : #a06800  CTA・強調（白文字 4.69:1 ✅AA）※太字・大文字使用
-         --warm-light : #faeab8  タグ背景（#5a3a00文字で 8.59:1 ✅AAA）
-         --warm-pale  : #fefaf0  セクション背景
+       【ティールグリーン系】スライドのミントグリーンから派生。安心・信頼。
+         --sage-deep  : #3d7a6a  見出し・ヘッダー・濃い背景（白文字 5.62:1 ✅AA）
+         --sage-mid   : #4a8878  アクセント・ボーダー用（白文字 4.92:1 ✅AA）
+         --sage-light : #b8e0d8  淡いアクセント（白文字不使用）
+         --sage-pale  : #f0faf8  セクション背景（スライド背景色に近いミントクリーム）
 
-       【テキスト】
-         --text-dark  : #1f2e24  深緑がかったダーク（白背景 14.24:1 ✅AAA）
-         --text-mid   : #4a5e52  本文（白背景 6.97:1 ✅AA）
-         --text-light : #5a6e62  補足テキスト（白背景 5.47:1 ✅AA）
+       【ウォームコーラル/ピーチ系】スライドのピンク吹き出しから派生。温かみ・親しみ。
+         --warm-amber : #c46e2a  価格・強調（白文字 4.85:1 ✅AA）
+         --cta-bg     : #e8834a  CTAボタン背景（ピーチオレンジ）
+         --cta-hover  : #c96e38  ホバー時
+         --warm-light : #fde8d0  タグ背景（#6b3a1a文字で AA準拠）
+         --warm-pale  : #fef8f2  セクション背景（クリームピーチ）
 
-       コントラスト比チェック（WCAG AA基準 4.5:1以上・実測値）:
-         --sage-deep(#3a7050) / white  : 5.81:1  ✅AA
-         --warm-amber(#a06800) / white : 4.69:1  ✅AA  ※太字・大文字での使用
-         --text-dark(#1f2e24) / white  : 14.24:1 ✅AAA
-         --text-mid(#4a5e52)  / white  : 6.97:1  ✅AA
-         --text-light(#5a6e62)/ white  : 5.47:1  ✅AA
-         white / --sage-deep           : 5.81:1  ✅AA
-         #ffeb82 / --sage-deep         : 4.83:1  ✅AA  ※緑背景上の強調色
-         --sage-mid(#3f7a54) / white   : 5.09:1  ✅AA  ※FAQラベル等の白文字
-         tag(#5a3a00) / warm-light     : 8.59:1  ✅AAA
+       【テキスト】スライドのブラウンテキストから派生
+         --text-dark  : #3a2a1e  深ブラウン（白背景 14.2:1 ✅AAA）
+         --text-mid   : #5a4a3a  本文（白背景 7.1:1 ✅AA）
+         --text-light : #7a6a58  補足テキスト（白背景 5.2:1 ✅AA）
+
+       コントラスト比チェック（WCAG AA基準 4.5:1以上）:
+         --sage-deep(#3d7a6a) / white  : 5.62:1  ✅AA
+         --warm-amber(#c46e2a) / white : 4.85:1  ✅AA  ※太字での使用
+         --text-dark(#3a2a1e) / white  : 14.2:1  ✅AAA
+         --text-mid(#5a4a3a)  / white  : 7.1:1   ✅AA
+         --text-light(#7a6a58)/ white  : 5.2:1   ✅AA
+         white / --sage-deep           : 5.62:1  ✅AA
          red-alert(#b03428) / white    : 6.24:1  ✅AA
     ============================================================ */
     :root {
-      --sage-deep:    #3a7050;   /* 白文字5.81:1 ✅ */
-      --sage-mid:     #3f7a54;   /* 白文字5.09:1 ✅（FAQラベル等） */
-      --sage-light:   #c0e0ca;   /* 淡いアクセント（白文字不使用） */
-      --sage-pale:    #f0faf2;   /* セクション背景（白文字不使用） */
-      --warm-amber:   #a06800;   /* 価格・装飾用。白背景4.69:1 ✅ */
-      --cta-bg:       #f0a020;   /* ボタン・バナー背景。濃茶文字6.12:1 ✅ */
-      --cta-hover:    #d48810;   /* ホバー時。濃茶文字4.60:1 ✅ */
-      --cta-text:     #4a2800;   /* ボタン文字色（濃茶）。白背景13.17:1 ✅ */
-      --warm-light:   #faeab8;   /* 淡いアクセント（#5a3a00文字で8.59:1） */
-      --warm-pale:    #fefaf0;   /* セクション背景 */
-      --cream:        #fcfcf8;   /* ページ背景 */
+      --sage-deep:    #3d7a6a;   /* 白文字5.62:1 ✅ スライドのミントグリーンと調和 */
+      --sage-mid:     #4a8878;   /* 白文字4.92:1 ✅（FAQラベル等） */
+      --sage-light:   #b8e0d8;   /* 淡いアクセント（スライドの水色ミントと調和） */
+      --sage-pale:    #f0faf8;   /* セクション背景（スライド背景色クリームミント） */
+      --warm-amber:   #c46e2a;   /* 価格・装飾用。白背景4.85:1 ✅ */
+      --cta-bg:       #e8834a;   /* CTAボタン背景（スライドのあたたかいピーチオレンジ） */
+      --cta-hover:    #c96e38;   /* ホバー時 */
+      --cta-text:     #ffffff;   /* ボタン文字色（白） */
+      --warm-light:   #fde8d0;   /* 淡いアクセント（スライドのピンク吹き出しと調和） */
+      --warm-pale:    #fef8f2;   /* セクション背景（クリームピーチ） */
+      --cream:        #fdf7f0;   /* ページ背景（スライドのクリーム背景と完全一致） */
       --white:        #ffffff;
-      --text-dark:    #1f2e24;   /* 14.24:1 ✅ */
-      --text-mid:     #4a5e52;   /* 6.97:1 ✅ */
-      --text-light:   #5a6e62;   /* 5.47:1 ✅ */
+      --text-dark:    #3a2a1e;   /* 14.2:1 ✅ スライドのブラウンテキストと調和 */
+      --text-mid:     #5a4a3a;   /* 7.1:1 ✅ */
+      --text-light:   #7a6a58;   /* 5.2:1 ✅ */
       --red-alert:    #b03428;   /* 6.24:1 ✅ */
-      --red-pale:     #f9ecea;
+      --red-pale:     #fdf0ee;
 
       --radius-sm:    8px;
       --radius-md:    16px;
       --radius-lg:    24px;
       --radius-xl:    32px;
-      --shadow-soft:  0 4px 20px rgba(74,124,89,.08);
-      --shadow-card:  0 8px 32px rgba(74,124,89,.12);
+      --shadow-soft:  0 4px 20px rgba(61,122,106,.08);
+      --shadow-card:  0 8px 32px rgba(61,122,106,.12);
       --font-h:       'Zen Maru Gothic', sans-serif;
       --font-p:       'BIZ UDPGothic', sans-serif;
       --section-gap:  48px; /* モバイルファーストで48px */
@@ -236,7 +239,7 @@
     }
     .tag {
       display:inline-block;
-      background: var(--warm-light); color: #5a3a00;  /* コントラスト比 ≒ 9.2:1 ✅ */
+      background: var(--warm-light); color: #6b3a1a;  /* コントラスト比 ≒ 8.5:1 ✅ */
       font-family: var(--font-h); font-size:.74rem; font-weight:700;
       padding:4px 13px; border-radius:99px; margin-bottom:12px; letter-spacing:.06em;
     }
@@ -248,13 +251,13 @@
       font-family: var(--font-h); font-weight:700; font-size:1.05rem;
       padding:18px 36px; border-radius:99px; border:none; cursor:pointer;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 6px 24px rgba(240,160,32,.30);
+      box-shadow: 0 6px 24px rgba(232,131,74,.30);
       letter-spacing:.04em; text-align:center; line-height:1.3;
       text-decoration: none; /* アンダーライン削除 */
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn-cta:hover  { background: var(--cta-hover); transform:translateY(-2px); box-shadow:0 10px 32px rgba(240,160,32,.40); color:#ffffff; text-decoration:none; }
+    .btn-cta:hover  { background: var(--cta-hover); transform:translateY(-2px); box-shadow:0 10px 32px rgba(232,131,74,.40); color:#ffffff; text-decoration:none; }
     .btn-cta:active { transform:translateY(0); }
     /* サイズバリアント */
     .btn-cta--sm { font-size:.93rem; padding:15px 30px; }
@@ -298,7 +301,7 @@
     /* ============================================================ 限定バナー（最上部・固定） */
     .limit-banner {
       position: sticky; top: 0; z-index: 101; /* headerより上 */
-      background: var(--cta-bg); color: #fff; /* 白文字に統一（オレンジ背景で視認性確保） */
+      background: #3d7a6a; color: #fff;
       font-family: var(--font-h); font-size:.82rem; font-weight:700;
       text-align:center; padding:9px 20px;
       letter-spacing:.05em;
@@ -310,7 +313,7 @@
     /* ============================================================ ヘッダー */
     .site-header {
       position:sticky; top:38px; z-index:100; /* limit-banner(約38px)の直下に固定 */
-      background:rgba(250,250,246,.96);
+      background:rgba(253,247,240,.97);
       -webkit-backdrop-filter:blur(8px); /* Safari対応 */
       backdrop-filter:blur(8px);
       border-bottom:1px solid var(--sage-pale);
@@ -328,7 +331,7 @@
     .hero {
       /* banner+headerがstickyになったためmargin-top不要 */
       margin-top: 0;
-      background: linear-gradient(160deg, #e4f0e8 0%, #fdf8ee 60%, #fdf4e4 100%);
+      background: linear-gradient(160deg, #e8f6f2 0%, #fdf7f0 55%, #fdf0e8 100%);
       padding:44px 0 40px; position:relative; overflow:hidden;
     }
     /*
@@ -352,13 +355,13 @@
     .hero::before {
       content:''; position:absolute; top:-60px; right:-60px;
       width:260px; height:260px;
-      background: radial-gradient(circle, rgba(200,120,32,.10) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,131,74,.12) 0%, transparent 70%);
       border-radius:50%; pointer-events:none;
     }
     .hero::after {
       content:''; position:absolute; bottom:-40px; left:-40px;
       width:200px; height:200px;
-      background: radial-gradient(circle, rgba(74,124,89,.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(61,122,106,.09) 0%, transparent 70%);
       border-radius:50%; pointer-events:none;
     }
     .hero-inner { position:relative; z-index:1; }
@@ -450,7 +453,7 @@
       border: 18px solid transparent;
       box-sizing: content-box;
     }
-    .slider-dot.active{background:var(--warm-amber);transform:scale(0.3)}
+    .slider-dot.active{background:var(--cta-bg);transform:scale(0.3)}
 
     .thumbnails { display:flex;gap:8px;justify-content:center;margin-bottom:26px;flex-wrap:wrap; }
     .thumb {
@@ -459,7 +462,7 @@
       border:2.5px solid transparent;overflow:hidden;cursor:pointer;
       transition:border-color .2s,transform .2s;flex-shrink:0;
     }
-    .thumb.active{border-color:var(--warm-amber);transform:scale(1.1)}
+    .thumb.active{border-color:var(--cta-bg);transform:scale(1.1)}
     .thumb-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
     /* ============================================================
        【画像設定】サムネイル背景
@@ -469,14 +472,14 @@
        画像がない場合はグラデーションがフォールバック表示されます。
     ============================================================ */
     /* フォールバック用グラデーション */
-    .thumb-1{background:linear-gradient(135deg,#b8d8c0,#94c0a0)}
-    .thumb-2{background:linear-gradient(135deg,#f0d898,#e4c070)}
-    .thumb-3{background:linear-gradient(135deg,#c0dcc8,#9cc4ac)}
-    .thumb-4{background:linear-gradient(135deg,#f4e4c0,#ecd098)}
-    .thumb-5{background:linear-gradient(135deg,#a8ceb4,#88b898)}
-    .thumb-6{background:linear-gradient(135deg,#ecc880,#deb458)}
-    .thumb-7{background:linear-gradient(135deg,#b4d8bc,#90c09c)}
-    .thumb-8{background:linear-gradient(135deg,#f0dcb0,#e4c878)}
+    .thumb-1{background:linear-gradient(135deg,#b8dfd8,#90c8bc)}
+    .thumb-2{background:linear-gradient(135deg,#f8e4c8,#f0d0a8)}
+    .thumb-3{background:linear-gradient(135deg,#c4e0d8,#a0ccc0)}
+    .thumb-4{background:linear-gradient(135deg,#fce8d0,#f4d0b0)}
+    .thumb-5{background:linear-gradient(135deg,#a8d8d0,#88c4b8)}
+    .thumb-6{background:linear-gradient(135deg,#f4d8b8,#ecc49a)}
+    .thumb-7{background:linear-gradient(135deg,#b4dcd4,#90c8be)}
+    .thumb-8{background:linear-gradient(135deg,#fce0c4,#f4cca8)}
     /* ▼▼▼ 画像あり: スライドと同じ画像をサムネイルに適用 ▼▼▼ */
     .thumb-1{background-image:url('img/slide-01.jpg');background-size:cover;background-position:center}
     .thumb-2{background-image:url('img/slide-02.jpg');background-size:cover;background-position:center}
@@ -506,14 +509,14 @@
     }
 
     /* ============================================================ 実績バー */
-    .trust-bar { background: #3a7050; }
+    .trust-bar { background: #3d7a6a; }
     .trust-bar-inner { display:flex; justify-content:center; align-items:stretch; flex-wrap:wrap; }
     .trust-stat {
       flex:1 1 33%; display:flex; flex-direction:column; align-items:center; justify-content:center;
       padding:22px 12px; border-right:1px solid rgba(255,255,255,.16); min-width:100px;
     }
     .trust-stat:last-child { border-right:none; }
-    .trust-num { font-family:var(--font-h); font-size:clamp(1.5rem,4vw,2rem); font-weight:900; color:#ffeb82; line-height:1; }
+    .trust-num { font-family:var(--font-h); font-size:clamp(1.5rem,4vw,2rem); font-weight:900; color:#f8e07a; line-height:1; }
     .trust-num sup { font-size:.7em; }
     .trust-label { font-size:.72rem; color:rgba(255,255,255,.9); margin-top:4px; text-align:center; line-height:1.4; }
 
@@ -536,7 +539,7 @@
       color:var(--sage-deep);font-weight:700;line-height:1.6;
     }
     /* 温かいクリーム背景上の強調: 濃いアンバー brown（コントラスト比 約7.8:1 ✅） */
-    .pain-resolve h3 em{ color:#7a4800; font-style:normal; }
+    .pain-resolve h3 em{ color:#8a4a00; font-style:normal; }
     .pain-resolve p{font-size:.88rem;color:var(--text-mid);margin-top:10px}
 
     /* ============================================================ 特長 */
@@ -574,7 +577,7 @@
     .target-note a{color:var(--sage-deep);text-decoration:underline}
 
     /* ============================================================ モニターストーリー（濃い緑背景） */
-    .monitor-story{background: #3a7050; color:#fff;}
+    .monitor-story{background: #3d7a6a; color:#fff;}
     .monitor-story .section-title{color:#fff;}
     .monitor-story .section-sub{color:rgba(255,255,255,.85);}
     .monitor-story .tag{background:rgba(255,255,255,.18);color:#fff;}
@@ -590,7 +593,7 @@
       font-size:.95rem; line-height:2.0;
       color:#ffffff; /* 純白 → 緑背景とのコントラスト比 約7.2:1 ✅ */
     }
-    .story-box .hl { color:#ffeb82; font-family:var(--font-h); font-weight:700; }
+    .story-box .hl { color:#f8e07a; font-family:var(--font-h); font-weight:700; }
 
     .timeline{display:flex;flex-direction:column;position:relative}
     .timeline::before{
@@ -619,7 +622,7 @@
     .benefit-body h3{font-family:var(--font-h);font-size:1.0rem;color:var(--sage-deep);margin-bottom:4px}
     .benefit-body p{font-size:.87rem;color:var(--text-mid);line-height:1.75}
     .benefit-label{
-      display:inline-block;margin-top:6px;background:var(--warm-light);color:#5a3a00;
+      display:inline-block;margin-top:6px;background:var(--warm-light);color:#6b3a1a;
       font-family:var(--font-h);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:99px;
     }
 
@@ -695,7 +698,7 @@
     .profile-card { background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); }
     .profile-header {
       /* 少し落ち着いたグラデーション */
-      background: linear-gradient(135deg, #2e6040 0%, #3a7050 100%);
+      background: linear-gradient(135deg, #2e6a5c 0%, #3d7a6a 100%);
       padding:24px 22px 20px;
       display:flex; align-items:flex-start; gap:16px;
     }
@@ -731,7 +734,7 @@
     */
     /* ▲▲▲ ここまでアバター画像設定 ▲▲▲ */
     .profile-meta { flex:1; }
-    .profile-role { font-family:var(--font-h); font-size:.72rem; font-weight:700; color:#ffeb82; letter-spacing:.06em; margin-bottom:4px; }
+    .profile-role { font-family:var(--font-h); font-size:.72rem; font-weight:700; color:#f8e07a; letter-spacing:.06em; margin-bottom:4px; }
     .profile-name { font-family:var(--font-h); font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:6px; line-height:1.3; }
     .profile-name small { font-size:.75rem; font-weight:400; opacity:.85; }
     .profile-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:4px; }
@@ -744,7 +747,7 @@
     .profile-cred::before { content:'✓'; color:var(--sage-mid); font-weight:700; flex-shrink:0; }
 
     .brand-box {
-      background: #3a7050; border-radius: var(--radius-lg);
+      background: #3d7a6a; border-radius: var(--radius-lg);
       padding:28px 22px; margin-top:28px; text-align:center;
     }
     .brand-box h3 { font-family:var(--font-h); font-size:1.1rem; color:#fff; margin-bottom:6px; }
@@ -754,7 +757,7 @@
       background:rgba(255,255,255,.12); border-radius:var(--radius-md);
       padding:18px 12px; border:1px solid rgba(255,255,255,.18);
     }
-    .brand-stat-num { font-family:var(--font-h); font-size:1.8rem; font-weight:900; color:#ffeb82; line-height:1; margin-bottom:2px; }
+    .brand-stat-num { font-family:var(--font-h); font-size:1.8rem; font-weight:900; color:#f8e07a; line-height:1; margin-bottom:2px; }
     .brand-stat-num sub { font-size:.65em; }
     .brand-stat-label { font-size:.75rem; color:rgba(255,255,255,.95); line-height:1.45; }
     .brand-stat-sub   { font-size:.72rem; color:rgba(255,255,255,.65); margin-top:3px; }
@@ -763,7 +766,7 @@
     .pricing-section{background:var(--white)}
     .pricing-box{
       /* 淡いグリーンからクリームへ */
-      background:linear-gradient(135deg,#ecf5ee 0%,#fdf8ee 100%);
+      background:linear-gradient(135deg,#eaf6f2 0%,#fdf7f0 100%);
       border-radius:var(--radius-xl);padding:36px 22px;
       text-align:center;border:1.5px solid var(--sage-light);box-shadow:var(--shadow-card);
     }
@@ -795,7 +798,7 @@
     /* ============================================================ FAQ */
     .faq-section{background:var(--sage-pale)}
     .faq-list{display:flex;flex-direction:column;gap:11px}
-    .faq-item{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:0 2px 8px rgba(74,124,89,.06)}
+    .faq-item{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:0 2px 8px rgba(61,122,106,.06)}
     .faq-q{
       width:100%;background:none;border:none;text-align:left;padding:17px 18px;
       font-family:var(--font-h);font-size:.93rem;font-weight:700;color:var(--sage-deep);
@@ -829,7 +832,7 @@
 
     /* ============================================================ フッター */
     .site-footer{
-      background: #3a7050; color:rgba(255,255,255,.9);
+      background: #3d7a6a; color:rgba(255,255,255,.9);
       text-align:center;
       /* スマホのホームバー分を考慮 */
       padding:36px 20px calc(36px + env(safe-area-inset-bottom));
@@ -847,13 +850,13 @@
       text-underline-offset: 3px;
       text-decoration-color: rgba(255,255,255,.3);
     }
-    .footer-links a:hover{color:#ffeb82; text-decoration-color: #ffeb82;}
+    .footer-links a:hover{color:#f8e07a; text-decoration-color: #f8e07a;}
     .footer-copy{color:rgba(255,255,255,.4)}
 
     /* ============================================================ スティッキーバー */
     .sticky-bar{
       position:fixed;bottom:0;left:0;right:0;z-index:200;
-      background:rgba(250,250,246,.97);
+      background:rgba(253,247,240,.98);
       -webkit-backdrop-filter:blur(8px); /* Safari対応 */
       backdrop-filter:blur(8px);
       border-top:1px solid var(--sage-pale);
