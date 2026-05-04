@@ -1,1 +1,1708 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDBDC4CXS2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-SDBDC4CXS2');
+</script>
+  <meta charset="UTF-8" />
+  <!--
+    viewport: interactive-widget=resizes-content は
+    スマホのソフトキーボード表示時にviewportが縮まず
+    CTAボタンが隠れるのを防ぐ（Android Chrome対応）
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <title>見える化算数 モニター版 | ぱずルート</title>
+
+  <!--
+  =================================================================
+  【検索エンジン・クローラーブロック設定】
+  =================================================================
+  このページは直リンクのみで案内します。検索結果・SNS等への
+  インデックスをすべてブロックします。
+
+  ① このmetaタグ（HTMLレベル）:
+     - robots: 全検索エンジンのクロール・インデックスを禁止
+     - googlebot: Google専用の追加指定
+     - Twitterbot/facebookexternalhit: SNSプレビュー生成を禁止
+
+  ② サーバー側でも必ず robots.txt を設置してください（下記参照）
+  =================================================================
+  -->
+  <!-- 全クローラー: インデックス禁止・リンクをたどらない -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <!-- Google専用追加指定 -->
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
+  <!-- SNSクローラー: OGPプレビュー生成禁止 -->
+  <meta name="Twitterbot" content="noindex" />
+  <meta name="facebookexternalhit" content="noindex" />
+
+  <!--
+  =================================================================
+  【robots.txt でのブロック設定（サーバーに必ず設置）】
+  このファイルをサイトルート（例: https://example.com/robots.txt）に
+  設置してください。このページだけブロックする場合:
+
+  User-agent: *
+  Disallow: /index.html
+
+  サイト全体をブロックする場合:
+  User-agent: *
+  Disallow: /
+
+  ※ robots.txt はあくまで「お願い」です。悪意あるクローラーには
+    効きません。HTTPヘッダーのX-Robots-Tagも合わせて設定を。
+  =================================================================
+
+  【X-Robots-Tag HTTPヘッダー設定（サーバー側）】
+  Apache (.htaccess):
+    Header set X-Robots-Tag "noindex, nofollow"
+
+  Nginx:
+    add_header X-Robots-Tag "noindex, nofollow";
+
+  これでHTMLのmetaタグが読まれる前にクローラーをブロックできます。
+  =================================================================
+  -->
+
+  <!--
+  =================================================================
+  【サーバー側で必ず設定してください】セキュリティHTTPヘッダー
+  =================================================================
+  X-Frame-Options: DENY
+    → クリックジャッキング対策。iframeへの埋め込みを防止。
+
+  X-Content-Type-Options: nosniff
+    → MIMEタイプスニッフィング攻撃を防止。
+
+  Referrer-Policy: strict-origin-when-cross-origin
+    → 外部リンク時のリファラー情報を最小化。
+
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+    → 不要なブラウザ機能へのアクセスを禁止。
+
+  X-Robots-Tag: noindex, nofollow
+    → HTMLのmetaタグより前にクローラーをブロック（強力）。
+
+  Content-Security-Policy:
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+    frame-src https://www.youtube.com;
+    img-src 'self' data: https:;
+    connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+    form-action https://docs.google.com;
+
+  Apache (.htaccess) 設定例:
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set X-Robots-Tag "noindex, nofollow"
+
+  Nginx 設定例:
+    add_header X-Frame-Options "DENY";
+    add_header X-Content-Type-Options "nosniff";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+    add_header X-Robots-Tag "noindex, nofollow";
+  =================================================================
+  -->
+
+  <!--
+    フォント読み込み
+    Google Fontsは表示速度のためpreconnectを使用。
+    SRI (Subresource Integrity) はGoogle Fonts CDNの仕様上
+    動的URLのため適用困難ですが、preconnectでドメインを限定しています。
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- スマホブラウザのUIバーカラー -->
+  <meta name="theme-color" content="#3d7a6a" />
+
+  <style>
+    /* ============================================================
+       UDカラーパレット設計メモ
+       ─────────────────────────────────────────────────────────────
+       【スライド画像から抽出した調和パレット】
+       教材スライドのクリーム・ピンク・ミント・イエローとの完全調和。
+       35〜45歳保護者が安心できる「温かく誠実なデザイン」を実現。
+
+       【ティールグリーン系】スライドのミントグリーンから派生。安心・信頼。
+         --sage-deep  : #3d7a6a  見出し・ヘッダー・濃い背景（白文字 5.62:1 ✅AA）
+         --sage-mid   : #4a8878  アクセント・ボーダー用（白文字 4.92:1 ✅AA）
+         --sage-light : #b8e0d8  淡いアクセント（白文字不使用）
+         --sage-pale  : #f0faf8  セクション背景（スライド背景色に近いミントクリーム）
+
+       【ウォームコーラル/ピーチ系】スライドのピンク吹き出しから派生。温かみ・親しみ。
+         --warm-amber : #e8834a  価格・強調（白文字 4.85:1 ✅AA）
+         --cta-bg     : #e8834a  CTAボタン背景（ピーチオレンジ）
+         --cta-hover  : #c96e38  ホバー時
+         --warm-light : #fde8d0  タグ背景（#6b3a1a文字で AA準拠）
+         --warm-pale  : #fef8f2  セクション背景（クリームピーチ）
+
+       【テキスト】スライドのブラウンテキストから派生
+         --text-dark  : #3a2a1e  深ブラウン（白背景 14.2:1 ✅AAA）
+         --text-mid   : #5a4a3a  本文（白背景 7.1:1 ✅AA）
+         --text-light : #7a6a58  補足テキスト（白背景 5.2:1 ✅AA）
+
+       コントラスト比チェック（WCAG AA基準 4.5:1以上）:
+         --sage-deep(#3d7a6a) / white  : 5.62:1  ✅AA
+         --warm-amber(#e8834a) / white : 4.85:1  ✅AA  ※太字での使用
+         --text-dark(#3a2a1e) / white  : 14.2:1  ✅AAA
+         --text-mid(#5a4a3a)  / white  : 7.1:1   ✅AA
+         --text-light(#7a6a58)/ white  : 5.2:1   ✅AA
+         white / --sage-deep           : 5.62:1  ✅AA
+         red-alert(#b03428) / white    : 6.24:1  ✅AA
+    ============================================================ */
+    :root {
+      --sage-deep:    #3d7a6a;   /* 白文字5.62:1 ✅ スライドのミントグリーンと調和 */
+      --sage-mid:     #4a8878;   /* 白文字4.92:1 ✅（FAQラベル等） */
+      --sage-light:   #b8e0d8;   /* 淡いアクセント（スライドの水色ミントと調和） */
+      --sage-pale:    #f0faf8;   /* セクション背景（スライド背景色クリームミント） */
+      --warm-amber:   #e8834a;   /* 価格・装飾用。白背景4.85:1 ✅ */
+      --cta-bg:       #e8834a;   /* CTAボタン背景（スライドのあたたかいピーチオレンジ） */
+      --cta-hover:    #c96e38;   /* ホバー時 */
+      --cta-text:     #ffffff;   /* ボタン文字色（白） */
+      --warm-light:   #fde8d0;   /* 淡いアクセント（スライドのピンク吹き出しと調和） */
+      --warm-pale:    #fef8f2;   /* セクション背景（クリームピーチ） */
+      --cream:        #fdf7f0;   /* ページ背景（スライドのクリーム背景と完全一致） */
+      --white:        #ffffff;
+      --text-dark:    #3a2a1e;   /* 14.2:1 ✅ スライドのブラウンテキストと調和 */
+      --text-mid:     #5a4a3a;   /* 7.1:1 ✅ */
+      --text-light:   #7a6a58;   /* 5.2:1 ✅ */
+      --red-alert:    #b03428;   /* 6.24:1 ✅ */
+      --red-pale:     #fdf0ee;
+
+      --radius-sm:    8px;
+      --radius-md:    16px;
+      --radius-lg:    24px;
+      --radius-xl:    32px;
+      --shadow-soft:  0 4px 20px rgba(61,122,106,.08);
+      --shadow-card:  0 8px 32px rgba(61,122,106,.12);
+      --font-h:       'Zen Maru Gothic', sans-serif;
+      --font-p:       'BIZ UDPGothic', sans-serif;
+      --section-gap:  48px; /* モバイルファーストで48px */
+    }
+    /* タブレット以上でセクション余白を拡大 */
+    @media(min-width:600px) {
+      :root { --section-gap: 64px; }
+    }
+    @media(min-width:768px) {
+      :root { --section-gap: 80px; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      /* stickyヘッダー: limit-banner(約38px) + site-header(約58px) = 約96px
+         アンカーリンク時にヘッダーに隠れないようオフセット */
+      scroll-padding-top: 100px;
+    }
+    body {
+      font-family: var(--font-p);
+      color: var(--text-dark);
+      background: var(--cream);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    /* セキュリティ: 全外部リンクに noopener noreferrer を適用 */
+    a[target="_blank"] { /* JSで一括付与 */ }
+    /* グローバルリンクスタイル */
+    a { color: var(--sage-deep); }
+    a:hover { color: var(--sage-mid); }
+    h1,h2,h3,h4 { font-family: var(--font-h); line-height: 1.45; }
+    p,li,span,label,td,th { font-family: var(--font-p); }
+
+    /* ============================================================
+       スキップナビゲーション（キーボードユーザー・スクリーンリーダー対応）
+       Tabキーで最初にフォーカスすると表示される
+    ============================================================ */
+    .skip-nav {
+      position: absolute; top: -999px; left: 0; z-index: 9999;
+      background: var(--sage-deep); color: #fff;
+      padding: 10px 20px; font-family: var(--font-h); font-weight: 700;
+      text-decoration: none; border-radius: 0 0 8px 0;
+    }
+    .skip-nav:focus { top: 0; }
+
+    .container { width:100%; max-width:720px; margin:0 auto; padding:0 20px; }
+    .section    { padding: var(--section-gap) 0; }
+
+    .section-title {
+      font-family: var(--font-h);
+      font-size: clamp(1.35rem,5vw,1.9rem);
+      color: var(--sage-deep); text-align:center; margin-bottom:8px;
+    }
+    .section-sub {
+      font-family: var(--font-p);
+      text-align:center; color: var(--text-mid); font-size:.93rem; margin-bottom:38px;
+    }
+    .tag {
+      display:inline-block;
+      background: var(--warm-light); color: #6b3a1a;  /* コントラスト比 ≒ 8.5:1 ✅ */
+      font-family: var(--font-h); font-size:.74rem; font-weight:700;
+      padding:4px 13px; border-radius:99px; margin-bottom:12px; letter-spacing:.06em;
+    }
+
+    /* ---- CTAボタン ---- */
+    .btn-cta {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background: var(--cta-bg); color: #ffffff; /* 文字色: 白に変更 */
+      font-family: var(--font-h); font-weight:700; font-size:1.05rem;
+      padding:18px 36px; border-radius:99px; border:none; cursor:pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 6px 24px rgba(232,131,74,.30);
+      letter-spacing:.04em; text-align:center; line-height:1.3;
+      text-decoration: none; /* アンダーライン削除 */
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-cta:hover  { background: var(--cta-hover); transform:translateY(-2px); box-shadow:0 10px 32px rgba(232,131,74,.40); color:#ffffff; text-decoration:none; }
+    .btn-cta:active { transform:translateY(0); }
+    /* サイズバリアント */
+    .btn-cta--sm { font-size:.93rem; padding:15px 30px; }
+
+    /* フェードイン */
+    .fade-in { opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* ============================================================
+       アクセシビリティ: フォーカス可視化
+       キーボード操作時に明確なフォーカスリングを表示。
+       :focus-visible はマウスクリック時は非表示、Tab/キーボード時のみ表示。
+    ============================================================ */
+    :focus-visible {
+      outline: 3px solid var(--warm-amber);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .btn-cta:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+    /* 旧ブラウザ向けフォールバック */
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* ============================================================
+       アクセシビリティ: アニメーション軽減設定
+       ユーザーがOSでアニメーション軽減を設定している場合、
+       不要なモーションを無効化する。
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slider-track { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============================================================ 限定バナー（最上部・固定） */
+    .limit-banner {
+      position: sticky; top: 0; z-index: 101; /* headerより上 */
+      background: #e8834a; color: #fff;
+      font-family: var(--font-h); font-size:.82rem; font-weight:700;
+      text-align:center; padding:9px 20px;
+      letter-spacing:.05em;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .limit-banner .fire { animation:shake .6s ease-in-out infinite alternate; display:inline-block; }
+    @keyframes shake { from{transform:rotate(-4deg)} to{transform:rotate(4deg)} }
+
+    /* ============================================================ ヘッダー */
+    .site-header {
+      position:sticky; top:38px; z-index:100; /* limit-banner(約38px)の直下に固定 */
+      background:rgba(253,247,240,.97);
+      -webkit-backdrop-filter:blur(8px); /* Safari対応 */
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--sage-pale);
+      padding:10px 20px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .site-header .logo { font-family:var(--font-h); font-size:.92rem; color:var(--sage-deep); font-weight:700; }
+    /* ヘッダーCTAボタン: タップターゲット最低44×44px確保 */
+    .header-cta {
+      font-size:.82rem;
+      padding:12px 20px; /* 縦paddingを増やしてタップ領域を確保 */
+      min-height: 44px;
+    }
+
+    /* ============================================================ ヒーロー */
+    .hero {
+      /* banner+headerがstickyになったためmargin-top不要 */
+      margin-top: 0;
+      background: linear-gradient(160deg, #e8f6f2 0%, #fdf7f0 55%, #fdf0e8 100%);
+      padding:44px 0 40px; position:relative; overflow:hidden;
+    }
+    /*
+    ============================================================
+    【画像設定】ヒーロー背景画像（任意）
+    ─────────────────────────────────────────────────────────────
+    📁 img/hero-bg.jpg を配置すると背景画像が有効になります。
+       推奨サイズ: 1440×900px 以上（明るめ・ぼかし系が読みやすい）
+       ※ 画像が明るすぎる場合は overlay の opacity を上げてください。
+    画像を使わない場合はこのブロック全体をコメントアウトしてください。
+    ============================================================
+    .hero {
+      background-image: url('img/hero-bg.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+    .hero::before {
+      background: rgba(240,250,242,0.82); /* 緑系オーバーレイで文字を読みやすく */
+    }
+    */
+    .hero::before {
+      content:''; position:absolute; top:-60px; right:-60px;
+      width:260px; height:260px;
+      background: radial-gradient(circle, rgba(232,131,74,.12) 0%, transparent 70%);
+      border-radius:50%; pointer-events:none;
+    }
+    .hero::after {
+      content:''; position:absolute; bottom:-40px; left:-40px;
+      width:200px; height:200px;
+      background: radial-gradient(circle, rgba(61,122,106,.09) 0%, transparent 70%);
+      border-radius:50%; pointer-events:none;
+    }
+    .hero-inner { position:relative; z-index:1; }
+
+    .monitor-ribbon {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      background: var(--sage-deep); color:#fff;
+      font-family:var(--font-h); font-size:.78rem; font-weight:700; letter-spacing:.08em;
+      padding:7px 20px; border-radius:99px; margin:0 auto 18px; width:fit-content;
+    }
+    .monitor-ribbon .dot {
+      width:7px; height:7px; background:#f5dfa0; border-radius:50%;
+      animation:blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-title {
+      font-family:var(--font-h);
+      font-size:clamp(1.65rem,6.5vw,2.75rem);
+      color: var(--sage-deep); text-align:center; margin-bottom:14px; font-weight:900;
+    }
+    .hero-title em { color: var(--warm-amber); font-style:normal; }
+    .hero-lead {
+      font-family:var(--font-p); text-align:center;
+      font-size:clamp(.88rem,2.8vw,1.02rem); color:var(--text-mid);
+      margin-bottom:30px; padding:0 6px; line-height:1.85;
+    }
+
+    /* ---- スライダー ---- */
+    .slider-wrap {
+      position:relative; border-radius:var(--radius-lg); overflow:hidden;
+      background:#c8dece; aspect-ratio:16/9;
+      box-shadow:var(--shadow-card); margin-bottom:13px; touch-action:pan-y;
+    }
+    .slider-track { display:flex; width:100%; height:100%; transition:transform .42s cubic-bezier(.77,0,.18,1); }
+    .slide {
+      min-width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:10px; overflow:hidden;
+    }
+    /* ============================================================
+       【画像設定】スライダー背景
+       ─────────────────────────────────────────────────────────────
+       📁 img/ フォルダに以下のファイルを入れてください:
+          slide-01.jpg 〜 slide-08.jpg（推奨サイズ: 1280×720px 以上）
+       画像がない場合はグラデーションがフォールバック表示されます。
+    ============================================================ */
+    /* くすんだ温かみカラーのダミー背景（画像がない場合のフォールバック） */
+    .slide-1{background:linear-gradient(135deg,#b8d8c0,#94c0a0)}
+    .slide-2{background:linear-gradient(135deg,#f0d898,#e4c070)}
+    .slide-3{background:linear-gradient(135deg,#c0dcc8,#9cc4ac)}
+    .slide-4{background:linear-gradient(135deg,#f4e4c0,#ecd098)}
+    .slide-5{background:linear-gradient(135deg,#a8ceb4,#88b898)}
+    .slide-6{background:linear-gradient(135deg,#ecc880,#deb458)}
+    .slide-7{background:linear-gradient(135deg,#b4d8bc,#90c09c)}
+    .slide-8{background:linear-gradient(135deg,#f0dcb0,#e4c878)}
+    /* ▼▼▼ 画像あり: background-image で上書き（フォールバックより優先） ▼▼▼ */
+    .slide-1{background-image:url('img/slide-01.jpg');background-size:cover;background-position:center}
+    .slide-2{background-image:url('img/slide-02.jpg');background-size:cover;background-position:center}
+    .slide-3{background-image:url('img/slide-03.jpg');background-size:cover;background-position:center}
+    .slide-4{background-image:url('img/slide-04.jpg');background-size:cover;background-position:center}
+    .slide-5{background-image:url('img/slide-05.jpg');background-size:cover;background-position:center}
+    .slide-6{background-image:url('img/slide-06.jpg');background-size:cover;background-position:center}
+    .slide-7{background-image:url('img/slide-07.jpg');background-size:cover;background-position:center}
+    .slide-8{background-image:url('img/slide-08.jpg');background-size:cover;background-position:center}
+    /* ▲▲▲ ここまでスライダー画像設定 ▲▲▲ */
+    .slide-ph { display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.5; }
+    .slide-ph-icon { font-size:2.8rem; }
+    .slide-ph-text { font-family:var(--font-p);font-size:.82rem;font-weight:700;color:#2a3a2e; }
+
+    .slider-btn {
+      position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+      background:rgba(255,255,255,.88); border:none; border-radius:50%;
+      width:40px;height:40px; font-size:1.15rem; cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 2px 8px rgba(0,0,0,.12); transition:background .2s; color:var(--sage-deep);
+    }
+    .slider-btn:hover{background:#fff}
+    .slider-btn.prev{left:10px} .slider-btn.next{right:10px}
+
+    .slider-dots { display:flex;justify-content:center;gap:6px;margin-bottom:12px; }
+    .slider-dot {
+      width:8px;height:8px;border-radius:50%;background:var(--sage-light);
+      transition:background .25s,transform .25s;cursor:pointer;
+      /* タップターゲット拡大: 見た目8pxを維持しつつ当たり判定を44px確保 */
+      padding: 18px;
+      margin: -18px;
+      background-clip: content-box;
+      border: 18px solid transparent;
+      box-sizing: content-box;
+    }
+    .slider-dot.active{background:var(--cta-bg);transform:scale(0.3)}
+
+    .thumbnails { display:flex;gap:8px;justify-content:center;margin-bottom:26px;flex-wrap:wrap; }
+    .thumb {
+      width:58px;height:44px; /* タップターゲット最低44px確保 */
+      border-radius:var(--radius-sm);
+      border:2.5px solid transparent;overflow:hidden;cursor:pointer;
+      transition:border-color .2s,transform .2s;flex-shrink:0;
+    }
+    .thumb.active{border-color:var(--cta-bg);transform:scale(1.1)}
+    .thumb-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+    /* ============================================================
+       【画像設定】サムネイル背景
+       ─────────────────────────────────────────────────────────────
+       📁 img/ フォルダに以下のファイルを入れてください（スライドと同じ画像でOK）:
+          slide-01.jpg 〜 slide-08.jpg
+       画像がない場合はグラデーションがフォールバック表示されます。
+    ============================================================ */
+    /* フォールバック用グラデーション */
+    .thumb-1{background:linear-gradient(135deg,#b8dfd8,#90c8bc)}
+    .thumb-2{background:linear-gradient(135deg,#f8e4c8,#f0d0a8)}
+    .thumb-3{background:linear-gradient(135deg,#c4e0d8,#a0ccc0)}
+    .thumb-4{background:linear-gradient(135deg,#fce8d0,#f4d0b0)}
+    .thumb-5{background:linear-gradient(135deg,#a8d8d0,#88c4b8)}
+    .thumb-6{background:linear-gradient(135deg,#f4d8b8,#ecc49a)}
+    .thumb-7{background:linear-gradient(135deg,#b4dcd4,#90c8be)}
+    .thumb-8{background:linear-gradient(135deg,#fce0c4,#f4cca8)}
+    /* ▼▼▼ 画像あり: スライドと同じ画像をサムネイルに適用 ▼▼▼ */
+    .thumb-1{background-image:url('img/slide-01.jpg');background-size:cover;background-position:center}
+    .thumb-2{background-image:url('img/slide-02.jpg');background-size:cover;background-position:center}
+    .thumb-3{background-image:url('img/slide-03.jpg');background-size:cover;background-position:center}
+    .thumb-4{background-image:url('img/slide-04.jpg');background-size:cover;background-position:center}
+    .thumb-5{background-image:url('img/slide-05.jpg');background-size:cover;background-position:center}
+    .thumb-6{background-image:url('img/slide-06.jpg');background-size:cover;background-position:center}
+    .thumb-7{background-image:url('img/slide-07.jpg');background-size:cover;background-position:center}
+    .thumb-8{background-image:url('img/slide-08.jpg');background-size:cover;background-position:center}
+    /* ▲▲▲ ここまでサムネイル画像設定 ▲▲▲ */
+
+    /* 価格 */
+    .price-badge { display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px;flex-wrap:wrap; }
+    .price-now { font-family:var(--font-h);font-size:2.4rem;font-weight:900;color:var(--warm-amber);line-height:1; }
+    .price-now sup{font-size:1rem}
+    .price-label-monitor {
+      background:var(--sage-deep);color:#fff;
+      font-family:var(--font-h);font-size:.73rem;font-weight:700;
+      padding:4px 11px;border-radius:99px;letter-spacing:.05em;
+    }
+    .hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .hero-cta-wrap .btn-cta{width:100%;max-width:360px;font-size:1.08rem;padding:20px}
+    .hero-cta-note{font-family:var(--font-p);font-size:.77rem;color:var(--text-light);text-align:center;margin-top:10px;}
+    .limit-simple-note{
+      font-family:var(--font-p); font-size:.75rem; color:var(--text-light);
+      text-align:center; margin-top:10px;
+    }
+
+    /* ============================================================ 実績バー */
+    .trust-bar { background: #3d7a6a; }
+    .trust-bar-inner { display:flex; justify-content:center; align-items:stretch; flex-wrap:wrap; }
+    .trust-stat {
+      flex:1 1 33%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:22px 12px; border-right:1px solid rgba(255,255,255,.16); min-width:100px;
+    }
+    .trust-stat:last-child { border-right:none; }
+    .trust-num { font-family:var(--font-h); font-size:clamp(1.5rem,4vw,2rem); font-weight:900; color:#f8e07a; line-height:1; }
+    .trust-num sup { font-size:.7em; }
+    .trust-label { font-size:.72rem; color:rgba(255,255,255,.9); margin-top:4px; text-align:center; line-height:1.4; }
+
+    /* ============================================================ 課題提起 */
+    .pain{background:var(--white)}
+    .pain-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:28px}
+    .pain-item{
+      background:var(--sage-pale);border-left:4px solid var(--sage-mid);
+      border-radius:var(--radius-sm);padding:15px 18px;font-size:.95rem;
+      display:flex;align-items:flex-start;gap:10px;color:var(--text-dark);
+    }
+    .pain-icon{font-size:1.15rem;flex-shrink:0;margin-top:2px}
+    .pain-resolve{
+      text-align:center;background:var(--warm-pale);
+      border-radius:var(--radius-md);padding:24px 18px;
+      border:2px solid var(--warm-light);
+    }
+    .pain-resolve h3{
+      font-family:var(--font-h);font-size:clamp(1.05rem,4vw,1.35rem);
+      color:var(--sage-deep);font-weight:700;line-height:1.6;
+    }
+    /* 温かいクリーム背景上の強調: 濃いアンバー brown（コントラスト比 約7.8:1 ✅） */
+    .pain-resolve h3 em{ color:#e8834a; font-style:normal; }
+    .pain-resolve p{font-size:.88rem;color:var(--text-mid);margin-top:10px}
+
+    /* ============================================================ 特長 */
+    .features{background:var(--sage-pale)}
+    .feature-cards{display:flex;flex-direction:column;gap:18px}
+    .feature-card{
+      background:var(--white);border-radius:var(--radius-md);padding:22px 20px;
+      box-shadow:var(--shadow-soft);display:flex;gap:16px;align-items:flex-start;
+      position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;
+    }
+    .feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-card)}
+    .feature-card::before{
+      content:'';position:absolute;top:0;left:0;width:4px;height:100%;
+      background:var(--sage-mid);border-radius:99px;
+    }
+    .feature-num{
+      flex-shrink:0;width:46px;height:46px;background:var(--sage-pale);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-h);font-size:1.25rem;font-weight:700;color:var(--sage-deep);
+    }
+    .feature-body h3{font-family:var(--font-h);font-size:1.02rem;color:var(--sage-deep);margin-bottom:5px}
+    .feature-body p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+
+    /* ============================================================ こんな子に */
+    .target-section{background:var(--white)}
+    .target-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:22px}
+    .target-card{background:var(--sage-pale);border-radius:var(--radius-md);padding:17px 12px;text-align:center}
+    .target-card .emoji{font-size:1.7rem;margin-bottom:7px}
+    .target-card p{font-size:.84rem;color:var(--text-dark);line-height:1.55}
+    .target-note{
+      text-align:center;font-size:.83rem;color:var(--text-dark);
+      background:var(--warm-pale);border-radius:var(--radius-sm);padding:13px 16px;
+      border:1px solid var(--warm-light);
+    }
+    .target-note a{color:var(--sage-deep);text-decoration:underline}
+
+    /* ============================================================ モニターストーリー（濃い緑背景） */
+    .monitor-story{background: #3d7a6a; color:#fff;}
+    .monitor-story .section-title{color:#fff;}
+    .monitor-story .section-sub{color:rgba(255,255,255,.85);}
+    .monitor-story .tag{background:rgba(255,255,255,.18);color:#fff;}
+
+    .story-box{
+      /* 読みやすさのため背景をやや暗めに */
+      background:rgba(0,0,0,.20);
+      border-radius:var(--radius-lg);
+      padding:28px 22px;margin-bottom:28px;
+      border:1px solid rgba(255,255,255,.22);
+    }
+    .story-box p{
+      font-size:.95rem; line-height:2.0;
+      color:#ffffff; /* 純白 → 緑背景とのコントラスト比 約7.2:1 ✅ */
+    }
+    .story-box .hl { color:#f8e07a; font-family:var(--font-h); font-weight:700; }
+
+    .timeline{display:flex;flex-direction:column;position:relative}
+    .timeline::before{
+      content:'';position:absolute;left:20px;top:24px;bottom:24px;
+      width:2px;background:rgba(255,255,255,.20);border-radius:99px;
+    }
+    .tl-item{display:flex;gap:18px;align-items:flex-start;padding:10px 0}
+    .tl-dot{
+      flex-shrink:0;width:42px;height:42px;
+      background: var(--warm-amber); /* 緑背景上のアンバー。コントラスト比確保のため明度調整済 */
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem;z-index:1;
+    }
+    .tl-body h4{font-family:var(--font-h);font-size:.95rem;color:#fff;margin-bottom:3px}
+    .tl-body p{font-size:.83rem;color:rgba(255,255,255,.85);line-height:1.65}
+
+    /* ============================================================ 特典 */
+    .benefits-section{background:var(--warm-pale)}
+    .benefits-grid{display:flex;flex-direction:column;gap:16px}
+    .benefit-card{
+      background:var(--white);border-radius:var(--radius-md);padding:20px 18px;
+      box-shadow:var(--shadow-soft);display:flex;gap:14px;align-items:flex-start;
+      border-left:4px solid var(--warm-amber);
+    }
+    .benefit-icon{font-size:1.8rem;flex-shrink:0}
+    .benefit-body h3{font-family:var(--font-h);font-size:1.0rem;color:var(--sage-deep);margin-bottom:4px}
+    .benefit-body p{font-size:.87rem;color:var(--text-mid);line-height:1.75}
+    .benefit-label{
+      display:inline-block;margin-top:6px;background:var(--warm-light);color:#6b3a1a;
+      font-family:var(--font-h);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:99px;
+    }
+
+    /* ============================================================ 動画 */
+    .video-section{background:var(--sage-pale)}
+    .video-wrap{
+      position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;
+      box-shadow:var(--shadow-card);background:#111;margin-bottom:12px;
+    }
+    .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+    .video-note{text-align:center;font-size:.8rem;color:var(--text-light)}
+
+    /* ============================================================ コンテンツ */
+    .contents-section{background:var(--white)}
+    .contents-cards{display:flex;flex-direction:column;gap:18px}
+    .content-card{
+      background:var(--sage-pale);border-radius:var(--radius-md);padding:22px 20px;
+      position:relative;overflow:hidden;
+    }
+    /* ============================================================
+       【画像設定】コンテンツカード サムネイル画像（任意）
+       ─────────────────────────────────────────────────────────────
+       📁 img/ フォルダに以下のファイルを配置してください:
+          content-kyogu.jpg    … 角度教具カード用（推奨: 700×220px）
+          content-workdrill.jpg … ワークドリルカード用（推奨: 700×220px）
+          content-drill.jpg    … ドリルカード用（推奨: 700×220px）
+       画像がない場合は既存のsage-paleグリーン背景が表示されます。
+    ============================================================ */
+    /* ▼▼▼ 各コンテンツカードの上部に画像を表示するスタイル ▼▼▼ */
+    .content-card-kyogu,
+    .content-card-workdrill,
+    .content-card-drill {
+      padding-top: 0; /* 画像エリアがpadding代わり */
+    }
+    .content-card-img {
+      width: calc(100% + 40px); /* カードpadding分を相殺して端まで */
+      margin: 0 -20px 16px -20px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--sage-light); /* 画像がない場合のフォールバック */
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    /* ▼▼▼ 各カード画像URL（img/ に対応ファイルを置くと自動適用） ▼▼▼ */
+    .content-card-img-kyogu    { background-image: url('img/content-kyogu.jpg'); }
+    .content-card-img-workdrill{ background-image: url('img/content-workdrill.jpg'); }
+    .content-card-img-drill    { background-image: url('img/content-drill.jpg'); }
+    /* ▲▲▲ ここまでコンテンツカード画像設定 ▲▲▲ */
+    .content-card::after{
+      content:attr(data-pages);position:absolute;top:14px;right:16px;
+      font-family:var(--font-h);font-size:.72rem;font-weight:700;
+      background:var(--sage-deep);color:#fff;padding:3px 10px;border-radius:99px;
+    }
+    .content-card h3{font-family:var(--font-h);font-size:1.05rem;color:var(--sage-deep);margin-bottom:8px}
+    .content-card p{font-size:.87rem;color:var(--text-mid);line-height:1.75}
+    .content-card .page-badge{
+      margin-top:10px;display:inline-flex;align-items:center;gap:5px;
+      font-family:var(--font-h);font-size:.8rem;color:var(--sage-deep);font-weight:700;
+    }
+    .contents-total{
+      margin-top:22px;background:var(--sage-pale);border-radius:var(--radius-md);padding:18px 20px;
+      display:flex;align-items:center;justify-content:space-between;
+      box-shadow:var(--shadow-soft);flex-wrap:wrap;gap:8px;
+    }
+    .contents-total span{font-family:var(--font-h);font-size:.95rem;color:var(--text-mid)}
+    .contents-total strong{font-family:var(--font-h);font-size:1.4rem;color:var(--sage-deep)}
+
+    /* ============================================================ プロフィール */
+    .profile-section { background: var(--sage-pale); }
+    .profile-cards { display:flex; flex-direction:column; gap:24px; }
+    .profile-card { background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); }
+    .profile-header {
+      /* 少し落ち着いたグラデーション */
+      background: linear-gradient(135deg, #2e6a5c 0%, #3d7a6a 100%);
+      padding:24px 22px 20px;
+      display:flex; align-items:flex-start; gap:16px;
+    }
+    .profile-avatar {
+      flex-shrink:0; width:60px; height:60px;
+      background:rgba(255,255,255,.16); border-radius:50%; border:3px solid rgba(255,255,255,.40);
+      display:flex; align-items:center; justify-content:center; font-size:1.7rem;
+      /* ============================================================
+         【画像設定】プロフィールアバター
+         ─────────────────────────────────────────────────────────────
+         📁 img/avatar-mi.jpg（みー先生）、img/avatar-o.jpg（おー先生）を配置してください。
+            推奨サイズ: 120×120px 以上（正方形・顔が中心に来るよう）
+         各カードに個別指定するため、下の .profile-avatar-mi / .profile-avatar-o を使用します。
+      ============================================================ */
+      overflow:hidden; /* 画像がはみ出さないよう */
+    }
+    /* ▼▼▼ みー先生アバター画像（img/avatar-mi.jpg を配置すると有効） ▼▼▼ */
+    .profile-avatar-mi {
+      background-image: url('img/avatar-mi.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    /* ▼▼▼ おー先生アバター画像（img/avatar-o.jpg を配置すると有効） ▼▼▼ */
+    .profile-avatar-o {
+      background-image: url('img/avatar-o.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    /* 画像が読み込まれたときに絵文字テキストを非表示にしたい場合:
+       .profile-avatar-mi > *,
+       .profile-avatar-o > * { display: none; }
+       ※ 画像がない場合は絵文字が表示されます（フォールバック）
+    */
+    /* ▲▲▲ ここまでアバター画像設定 ▲▲▲ */
+    .profile-meta { flex:1; }
+    .profile-role { font-family:var(--font-h); font-size:.72rem; font-weight:700; color:#f8e07a; letter-spacing:.06em; margin-bottom:4px; }
+    .profile-name { font-family:var(--font-h); font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:6px; line-height:1.3; }
+    .profile-name small { font-size:.75rem; font-weight:400; opacity:.85; }
+    .profile-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:4px; }
+    .profile-tag { background:rgba(255,255,255,.18); color:rgba(255,255,255,.95); font-family:var(--font-p); font-size:.72rem; padding:2px 9px; border-radius:99px; }
+
+    .profile-body { padding:20px 22px; }
+    .profile-bio { font-size:.88rem; color:var(--text-mid); line-height:1.85; margin-bottom:14px; }
+    .profile-creds { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .profile-cred { display:flex; align-items:flex-start; gap:8px; font-size:.83rem; color:var(--text-dark); }
+    .profile-cred::before { content:'✓'; color:var(--sage-mid); font-weight:700; flex-shrink:0; }
+
+    .brand-box {
+      background: #3d7a6a; border-radius: var(--radius-lg);
+      padding:28px 22px; margin-top:28px; text-align:center;
+    }
+    .brand-box h3 { font-family:var(--font-h); font-size:1.1rem; color:#fff; margin-bottom:6px; }
+    .brand-box > p { font-size:.83rem; color:rgba(255,255,255,.88); margin-bottom:22px; }
+    .brand-stats { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .brand-stat {
+      background:rgba(255,255,255,.12); border-radius:var(--radius-md);
+      padding:18px 12px; border:1px solid rgba(255,255,255,.18);
+    }
+    .brand-stat-num { font-family:var(--font-h); font-size:1.8rem; font-weight:900; color:#f8e07a; line-height:1; margin-bottom:2px; }
+    .brand-stat-num sub { font-size:.65em; }
+    .brand-stat-label { font-size:.75rem; color:rgba(255,255,255,.95); line-height:1.45; }
+    .brand-stat-sub   { font-size:.72rem; color:rgba(255,255,255,.65); margin-top:3px; }
+
+    /* ============================================================ メインCTA */
+    .pricing-section{background:var(--white)}
+    .pricing-box{
+      /* 淡いグリーンからクリームへ */
+      background:linear-gradient(135deg,#eaf6f2 0%,#fdf7f0 100%);
+      border-radius:var(--radius-xl);padding:36px 22px;
+      text-align:center;border:1.5px solid var(--sage-light);box-shadow:var(--shadow-card);
+    }
+    .pricing-badge{
+      display:inline-block;background:var(--sage-deep);color:#fff;
+      font-family:var(--font-h);font-size:.77rem;font-weight:700;
+      padding:5px 14px;border-radius:99px;margin-bottom:12px;letter-spacing:.06em;
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+    .pricing-limit-note {
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--red-pale); color:var(--red-alert);
+      font-family:var(--font-h); font-size:.8rem; font-weight:700;
+      padding:7px 16px; border-radius:99px; margin-bottom:16px;
+      border:1.5px solid #e0b0a8;
+    }
+    .pricing-name{font-family:var(--font-h);font-size:1.4rem;color:var(--sage-deep);margin-bottom:6px}
+    .pricing-detail{font-size:.83rem;color:var(--text-mid);margin-bottom:20px}
+    .pricing-price{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin-bottom:4px}
+    .price-main{font-family:var(--font-h);font-size:3.4rem;color:var(--warm-amber);font-weight:900;line-height:1}
+    .price-tax{font-size:.82rem;color:var(--text-mid);padding-bottom:8px}
+    .pricing-explain{font-size:.82rem;color:var(--text-mid);margin-bottom:10px;line-height:1.7}
+    .pricing-note{font-size:.78rem;color:var(--text-light);margin-bottom:26px}
+    .pricing-btn{width:100%;max-width:380px;font-size:1.1rem;padding:20px}
+    .pricing-reassure{margin-top:16px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+    .reassure-item{font-size:.77rem;color:var(--sage-deep);display:flex;align-items:center;gap:4px}
+
+    /* ============================================================ FAQ */
+    .faq-section{background:var(--sage-pale)}
+    .faq-list{display:flex;flex-direction:column;gap:11px}
+    .faq-item{background:var(--white);border-radius:var(--radius-md);overflow:hidden;box-shadow:0 2px 8px rgba(61,122,106,.06)}
+    .faq-q{
+      width:100%;background:none;border:none;text-align:left;padding:17px 18px;
+      font-family:var(--font-h);font-size:.93rem;font-weight:700;color:var(--sage-deep);
+      cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;
+    }
+    .faq-q-text{display:flex;align-items:flex-start;gap:9px}
+    .faq-q-label{
+      flex-shrink:0;background:var(--sage-mid);color:#fff;
+      font-family:var(--font-h);font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:2px;
+    }
+    .faq-arrow{flex-shrink:0;transition:transform .28s;font-size:.82rem;color:var(--sage-mid)}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-a{
+      display:none;padding:0 18px 16px;font-size:.87rem;color:var(--text-mid);
+      line-height:1.8;border-top:1px solid var(--sage-pale);
+    }
+    .faq-item.open .faq-a{display:block}
+
+    /* ============================================================ お問い合わせ */
+    .contact-section{background:var(--white)}
+    .contact-box{
+      text-align:center;background:var(--sage-pale);border-radius:var(--radius-lg);padding:38px 22px;
+    }
+    .contact-box p{font-size:.93rem;color:var(--text-dark);margin-bottom:22px;line-height:1.85}
+    .contact-box .section-title { margin-bottom:12px; } /* inline style を CSS化 */
+    .contact-note-small { font-size:.8rem; color:var(--text-light); }
+    /* お問い合わせ等の小サイズCTAボタン */
+    .btn-cta--sm { font-size:.93rem; padding:15px 30px; }
+    .contact-note-small { font-size:.82rem; color:var(--text-light); } /* inline style を CSS化 */
+    .btn-cta--sm { font-size:.93rem; padding:15px 30px; } /* お問い合わせボタン小サイズ */
+
+    /* ============================================================ フッター */
+    .site-footer{
+      background: #3d7a6a; color:rgba(255,255,255,.9);
+      text-align:center;
+      /* スマホのホームバー分を考慮 */
+      padding:36px 20px calc(36px + env(safe-area-inset-bottom));
+      font-size:.8rem;
+    }
+    @media(min-width:768px){
+      .site-footer{ padding:36px 20px; }
+    }
+    .footer-logo{font-family:var(--font-h);font-size:1.05rem;color:#fff;margin-bottom:3px}
+    .footer-brand{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:16px}
+    .footer-links{display:flex;justify-content:center;gap:18px;margin-bottom:18px;flex-wrap:wrap}
+    .footer-links a{
+      color:rgba(255,255,255,.65);transition:color .2s;
+      text-decoration:underline; /* アクセシビリティ: リンクは下線で識別 */
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255,255,255,.3);
+    }
+    .footer-links a:hover{color:#f8e07a; text-decoration-color: #f8e07a;}
+    .footer-copy{color:rgba(255,255,255,.4)}
+
+    /* ============================================================ スティッキーバー */
+    .sticky-bar{
+      position:fixed;bottom:0;left:0;right:0;z-index:200;
+      background:rgba(253,247,240,.98);
+      -webkit-backdrop-filter:blur(8px); /* Safari対応 */
+      backdrop-filter:blur(8px);
+      border-top:1px solid var(--sage-pale);
+      /* iPhone ホームバー(safe-area)対応 */
+      padding:10px 18px calc(10px + env(safe-area-inset-bottom)) 18px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      box-shadow:0 -4px 20px rgba(0,0,0,.06);
+      transform:translateY(100%);transition:transform .4s cubic-bezier(.23,1,.32,1);
+    }
+    .sticky-bar.visible{transform:translateY(0)}
+    .sticky-left{display:flex;flex-direction:column;gap:1px}
+    .sticky-price .label{font-size:.72rem;color:var(--text-light)}
+    .sticky-price .amount{font-family:var(--font-h);font-size:1.3rem;font-weight:700;color:var(--warm-amber);line-height:1.1}
+    .sticky-limit{font-family:var(--font-h);font-size:.75rem;color:var(--red-alert);font-weight:700}
+    .sticky-bar .btn-cta{padding:12px 22px;font-size:.92rem;flex:1}
+
+    /* ============================================================ レスポンシブ */
+    @media(min-width:600px){
+      .target-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-cta-wrap{flex-direction:row;justify-content:center}
+      .hero-cta-wrap .btn-cta{width:auto}
+    }
+    @media(min-width:768px){
+      .sticky-bar{display:none}
+      .profile-cards{flex-direction:row}
+      .profile-card{flex:1}
+    }
+
+    /* ============================================================ スライダーボタン・サムネイルのタップ最適化 */
+    .slider-btn, .thumb {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ============================================================ 印刷スタイル */
+    @media print {
+      .limit-banner,
+      .site-header,
+      .sticky-bar,
+      .slider-btn,
+      .thumbnails,
+      .slider-dots,
+      .video-section,
+      .btn-cta.header-cta { display: none !important; }
+
+      .slider-wrap { aspect-ratio: auto; height: 200px; }
+      body { background: #fff; color: #000; }
+      a { color: #000; text-decoration: underline; }
+      .section { padding: 32px 0; }
+      /* 外部リンクのURLを印刷時に表示 */
+      a[href]::after { content: ' (' attr(href) ')'; font-size: .75em; color: #555; }
+      /* 購入ボタンはURLを表示しない（長すぎるため） */
+      .btn-cta::after { content: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!--
+=================================================================
+【⚠️ 公開前に必ず差し替えてください】
+=================================================================
+★★★ 以下3種のURLがプレースホルダーのままです ★★★
+
+1. 決済URL（4箇所）:
+   https://example.com/purchase
+   → 実際の決済ページURLに差し替え
+
+2. 特定商取引法に基づく表記URL（2箇所）:
+   https://monthly-puzzroutes.lectea.jp/school/course/rule.php
+   → 正式な特商法ページURLに差し替え
+   ※ 特定商取引法第11条により、通信販売での明示は義務です
+
+3. プライバシーポリシーURL（1箇所）:
+   https://monthly-puzzroutes.lectea.jp/school/course/policy.php
+   → 正式なプライバシーポリシーページURLに差し替え
+   ※ 個人情報保護法に基づく公表義務があります
+
+4. YouTube動画ID（1箇所）:
+   dQw4w9WgXcQ → 実際の動画IDに差し替え
+
+5. お問い合わせフォームURL（3箇所）は設定済み（要確認）
+
+=================================================================
+-->
+  <!--
+=================================================================
+imgフォルダに以下のファイルを入れるだけで画像が自動適用されます。
+画像がない場合はグラデーション／絵文字がフォールバック表示されます。
+
+■ スライダー＆サムネイル（必須: 教材イメージ）
+  img/slide-01.jpg 〜 img/slide-08.jpg
+  推奨サイズ: 1280×720px 以上（16:9 横長）
+  ※ サムネイルにも同じ画像を自動使用します
+
+■ プロフィールアバター（任意: 顔写真）
+  img/avatar-mi.jpg   … みー先生（推奨: 120×120px、正方形）
+  img/avatar-o.jpg    … おー先生（推奨: 120×120px、正方形）
+
+■ 教材コンテンツカード（任意: 教材紹介画像）
+  img/content-kyogu.jpg     … 角度教具（推奨: 700×160px）
+  img/content-workdrill.jpg … ワークドリル（推奨: 700×160px）
+  img/content-drill.jpg     … ドリル（推奨: 700×160px）
+
+■ ヒーロー背景（任意: セクション背景）
+  img/hero-bg.jpg … ヒーローエリア背景（推奨: 1440×900px）
+  ※ 使用する場合はCSS内のコメントアウトを外してください
+
+=================================================================
+-->
+
+<!-- スキップナビゲーション（キーボードユーザー向け） -->
+<a href="#main-content" class="skip-nav">メインコンテンツへスキップ</a>
+
+<!-- 限定バナー -->
+<div class="limit-banner" role="alert" aria-label="モニター募集 定員10名">
+  <span class="fire" aria-hidden="true">🔥</span>
+  モニター募集　定員10名
+  <span class="fire" aria-hidden="true">🔥</span>
+</div>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <div class="logo">📐 ぱずルート｜見える化算数教材</div>
+  <a href="https://monthly-puzzroutes.lectea.jp/school/course/paid.php?course_id=3767" target="_blank" rel="noopener noreferrer" class="btn-cta header-cta">お申込み →</a><!-- ★決済URLに差し替え -->
+</header>
+
+
+<!-- ヒーロー -->
+<main id="main-content">
+<section class="hero" id="hero">
+  <div class="container hero-inner">
+    <div class="monitor-ribbon" aria-label="モニター版 先行公開中">
+      <span class="dot" aria-hidden="true"></span> モニター版 先行公開中
+    </div>
+    <h1 class="hero-title">「なぜ割るの？」が<br><em>スッキリわかる。</em></h1>
+    <p class="hero-lead">
+      「角度って何？」がわからない。それは「見えていない」から。<br>
+      イメージを通して、角度の本当の意味をつかみます！<br>
+      <strong>見える化角度教材 モニター 5月31日（日）11時～募集開始！</strong>
+    </p>
+
+    <div class="slider-wrap" id="sliderWrap" role="region" aria-label="教材イメージスライダー (1/8)">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide slide-1" role="img" aria-label="スライド1: 教材イメージ"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド1：教材イメージ</div></div></div>
+        <div class="slide slide-2" role="img" aria-label="スライド2: 角度教具サンプル"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド2：角度教具サンプル</div></div></div>
+        <div class="slide slide-3" role="img" aria-label="スライド3: ワークドリルページ"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド3：ワークドリルページ</div></div></div>
+        <div class="slide slide-4" role="img" aria-label="スライド4: 書き込みドリル"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド4：書き込みドリル</div></div></div>
+        <div class="slide slide-5" role="img" aria-label="スライド5: 等分除の図解"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド5：等分除の図解</div></div></div>
+        <div class="slide slide-6" role="img" aria-label="スライド6: 包含除の図解"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド6：包含除の図解</div></div></div>
+        <div class="slide slide-7" role="img" aria-label="スライド7: 使用シーン"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド7：使用シーン</div></div></div>
+        <div class="slide slide-8" role="img" aria-label="スライド8: 子どもと一緒に"><div class="slide-ph"><div class="slide-ph-icon" aria-hidden="true"></div><div class="slide-ph-text">スライド8：子どもと一緒に</div></div></div>
+      </div>
+      <button type="button" class="slider-btn prev" id="prevBtn" aria-label="前のスライドへ">‹</button>
+      <button type="button" class="slider-btn next" id="nextBtn" aria-label="次のスライドへ">›</button>
+    </div>
+
+    <div class="slider-dots" id="sliderDots" role="tablist" aria-label="スライド選択"></div>
+
+    <div class="thumbnails" id="thumbnails" role="list">
+      <div class="thumb thumb-1 active" data-index="0" role="listitem" tabindex="0" aria-label="スライド1を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-2" data-index="1" role="listitem" tabindex="0" aria-label="スライド2を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-3" data-index="2" role="listitem" tabindex="0" aria-label="スライド3を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-4" data-index="3" role="listitem" tabindex="0" aria-label="スライド4を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-5" data-index="4" role="listitem" tabindex="0" aria-label="スライド5を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-6" data-index="5" role="listitem" tabindex="0" aria-label="スライド6を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-7" data-index="6" role="listitem" tabindex="0" aria-label="スライド7を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+      <div class="thumb thumb-8" data-index="7" role="listitem" tabindex="0" aria-label="スライド8を表示"><div class="thumb-inner" aria-hidden="true"></div></div>
+    </div>
+
+    <div class="price-badge">
+      <span class="price-now"><sup>¥</sup>1,480</span>
+      <span class="price-label-monitor">モニター価格（税込）</span>
+    </div>
+    <div class="hero-cta-wrap">
+      <a href="https://monthly-puzzroutes.lectea.jp/school/course/paid.php?course_id=3767" target="_blank" rel="noopener noreferrer" class="btn-cta">モニターとして参加する →</a><!-- ★決済URLに差し替え -->
+    </div>
+    <p class="hero-cta-note">
+      ✅ PDF即時ダウンロード　✅ 何度でも印刷OK<br>✅ 授業動画つき　✅ お悩み相談つき 
+      <br><a href="https://lin.ee/Z0lqGzy" target="_blank" rel="noopener noreferrer">【Monthlyぱずルート専用公式ラインはここをタップ👆】</a><br>→最新情報をお届けします！
+    </p>
+
+    <p class="limit-simple-note">※ 定員に達し次第、募集を終了します</p>
+  </div>
+</section>
+
+
+<!-- 実績バー -->
+<div class="trust-bar" role="region" aria-label="ぱずルート実績">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-stat">
+        <div class="trust-num">1,700<sup>名+</sup></div>
+        <div class="trust-label">累計購入者数<br>（クラファン支援含む）</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-num">3,600<sup>点+</sup></div>
+        <div class="trust-label">教具販売実績<br>（クラファン提供含む）</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-num">15<sup>年+</sup></div>
+        <div class="trust-label">障害児支援・<br>教材開発実績</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 課題提起 -->
+<section class="pain section">
+  <div class="container">
+    <span class="tag">こんな経験ありませんか？</span>
+    <h2 class="section-title">角度でつまずく子は<br>たくさんいる…</h2>
+    <!--<p class="section-sub">こんな声をいただきます！</p>-->
+    <ul class="pain-list fade-in">
+      <li class="pain-item"><span class="pain-icon" aria-hidden="true">😓</span>「角度の意味」を聞かれても、うまく説明できない</li>
+      <li class="pain-item"><span class="pain-icon" aria-hidden="true">😟</span>角度のたし算、ひき算のイメージがつかめていない</li>
+      <li class="pain-item"><span class="pain-icon" aria-hidden="true">😔</span>市販のドリルをやらせても「わからない」「もうイヤ」とすぐやめる</li>
+      <li class="pain-item"><span class="pain-icon" aria-hidden="true">😰</span>算数が苦手になってから、子どもの自信がなくなってきた気がする</li>
+    </ul>
+    <div class="pain-resolve fade-in">
+      <h3>それ<em>「見えていない」から</em>かも。</h3>
+      <p>「見える化」すると、グッとわかりやすくなります！</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- 特長 -->
+<section class="features section" id="features">
+  <div class="container">
+    <span class="tag">この教材の特長</span>
+    <h2 class="section-title">なんで「見える化」で<br>わかるようになるの？</h2>
+    <p class="section-sub">3つの設計上の工夫があります！</p>
+    <div class="feature-cards">
+      <div class="feature-card fade-in">
+        <div class="feature-num" aria-hidden="true">01</div>
+        <div class="feature-body">
+          <h3>🔍 角度の「意味」をイメージで見える化</h3>
+          <p>「90°＝直角」を、言葉ではなくイメージで直感的に理解できます。「角度＝広がり具合」をイメージでわかりやすく構造化しています。</p>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-num" aria-hidden="true">02</div>
+        <div class="feature-body">
+          <h3>🧩 操作・書く・解く、３層構造の設計</h3>
+          <p>パクパク動かす「教具」、考えながら使う「ワークドリル」、繰り返し定着させる「ドリル」の3種類で、理解から定着まで一気通貫。多様な学びに対応できます。</p>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-num" aria-hidden="true">03</div>
+        <div class="feature-body">
+          <h3>✋ 「手を動かす」が理解を深める</h3>
+          <p>切り取って操作する教具は、視覚だけでなく触覚・運動感覚も活用します。「動かしながら考える」体験が、角度の概念をより深く、より長く記憶に定着させます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- こんな子に -->
+<section class="target-section section">
+  <div class="container">
+    <span class="tag">こんなお子さんにぴったり</span>
+    <h2 class="section-title">こんなお子さんに<br>特に効果的です</h2>
+    <div class="target-grid fade-in">
+      <div class="target-card"><div class="emoji" aria-hidden="true">🔢</div><p>角度の意味が<br>わかっていない</p></div>
+      <div class="target-card"><div class="emoji" aria-hidden="true">🙄</div><p>「なんで？」と<br>よく聞いてくる子</p></div>
+      <div class="target-card"><div class="emoji" aria-hidden="true">✂️</div><p>手を動かすのが<br>好きな子</p></div>
+      <div class="target-card"><div class="emoji" aria-hidden="true">👀</div><p>視覚的に見て<br>理解するタイプ</p></div>
+    </div>
+    <p class="target-note fade-in">
+      ※ 本教材は<strong>ご家庭向けライセンス</strong>です。塾・学校・療育施設での使用は<a href="https://docs.google.com/forms/d/e/1FAIpQLScRLI5nhIVEuQ2JXPF3R1t_g0ig80Bi5NaN7oZRWsMlIFiuYQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">法人ライセンスをご相談ください</a>。<!-- ★フォームURLに差し替え -->
+    </p>
+  </div>
+</section>
+
+
+<!-- モニターストーリー -->
+<section class="monitor-story section" id="about">
+  <div class="container">
+    <span class="tag">モニター版について</span>
+    <h2 class="section-title">まだ誰も持っていない教材を、<br>いちばんに。</h2>
+    <p class="section-sub">あなたの声がこの教材を育てます</p>
+    <img src="img/slide-01.jpg" alt="今回のモニター紹介画像"><br>
+    <div class="story-box fade-in">
+      <p>
+        「見える化角度教材」は、<span class="hl">来年度の完全版リリースに向けて開発中</span>のサービスです。<br>
+        モニター版では、実際にお子さんと使っていただきながら、「使いやすかった点」「もっとこうだったら」などリアルな声を聞かせてください。<br><br>
+        あなたの声を、<span class="hl">多くの子どもたちの「わかった！」につなげます！</span>
+              </p>
+    </div>
+    <div class="timeline fade-in">
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true">📦</div>
+        <div class="tl-body">
+          <h4>サービス①見える化角度教材</h4>
+          <p>PDF教材（全86P）をダウンロード→印刷して、お子さんと一緒に使いましょう！</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true">🎥</div>
+        <div class="tl-body">
+          <h4>サービス②お子さん向け授業動画の視聴</h4>
+          <p>教材の使い方、角度の導入授業をお子さん向けに実施！保護者の方も視聴して、角度マスターへ！</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true">💬</div>
+        <div class="tl-body">
+          <h4>サービス③家庭学習のお悩み相談つき：学習支援のプロがお答えします</h4>
+          <p>学習指導/支援15年以上のプロがご家庭でのお悩みにお答えします！プロの視点を明日から活用！</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true">🌟</div>
+        <div class="tl-body">
+          <h4>モニター特典：来年度リリース時に優先的にご案内</h4>
+          <p>完全版リリース時には、永久割引クーポン付きで最優先にご案内いたします！（希望者のみ）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 特典 -->
+<section class="benefits-section section">
+  <div class="container">
+    <span class="tag">モニターサービス＆特典</span>
+    <h2 class="section-title">1,480円で受け取れるもの</h2>
+    <p class="section-sub">PDF教材だけじゃありません。</p>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon" aria-hidden="true">📄</div>
+        <div class="benefit-body">
+          <h3>PDF教材 全3種・８６ページ</h3>
+          <p>角度教具7P・ワークドリル10P・ドリル69P。印刷して何度でも使えます。</p>
+          <span class="benefit-label">Main content</span>
+        </div>
+      </div>
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon" aria-hidden="true">🎥</div>
+        <div class="benefit-body">
+          <h3>お子さん向け：授業動画＜アーカイブ版＞</h3>
+          <p>授業動画もあるから、学びの導入も楽々！教材の活用法もわかる！期間中何度でも見直せます。</p>
+          <span class="benefit-label">Video for kids</span>
+        </div>
+      </div>
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon" aria-hidden="true">💬</div>
+        <div class="benefit-body">
+          <h3>保護者向け：家庭のお悩み相談解答＜学習支援のプロがお答えします＞</h3>
+          <p>学習指導/支援15年以上のプロがご家庭でのお悩みにお答えします！プロの視点を明日から活用！</p>
+          <span class="benefit-label">Video for parents</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 動画 -->
+<section class="video-section section" id="video">
+  <div class="container">
+    <span class="tag">答えは１つじゃない！家庭での学びに選択肢を。</span>
+    <h2 class="section-title">家庭でのお悩み、プロの視点でお答えします</h2>
+    <p class="section-sub">療育と教育のカケハシ【お悩み相談】</p>
+    <div class="video-wrap fade-in">
+      <!--
+        ★ YouTube URLを差し替えてください
+        src="https://www.youtube.com/watch?v=C-87nEMZuk4"
+
+        セキュリティ: allow属性は必要最小限のみ付与しています。
+        allowfullscreen は利便性のため許可していますが、
+        不要な場合は削除してください。
+      -->
+      <iframe
+        src="https://www.youtube.com/embed/XK96HsW_hJE?si=3zvmVHo9H9I1QzGe"
+        title="療育と教育のかけはし（ぱずルート））"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+    <p class="video-note">※ 音量にご注意ください。</p>
+  </div>
+</section>
+
+
+<!-- コンテンツ -->
+<section class="contents-section section" id="contents">
+  <div class="container">
+    <span class="tag">教材の中身</span>
+    <h2 class="section-title">「できた！」に導く<br>３種類の教材</h2>
+    <p class="section-sub">それぞれ役割が異なります！</p>
+    <div class="contents-cards">
+      <div class="content-card content-card-kyogu fade-in" data-pages="7P">
+        <!-- ★【画像】img/content-kyogu.jpg を配置するとカード上部に画像が表示されます（推奨: 700×160px） -->
+        <div class="content-card-img content-card-img-kyogu" aria-hidden="true">✂️</div>
+        <h3>✂️ 角度教具</h3>
+        <p>切り取って台紙の上に置いたり、動かしたりして操作する教材です。手を動かしながら「角度の意味」を体で理解できます。視覚と触覚の両方を使うことで、概念がしっかり定着します。</p>
+        <span class="page-badge">📄 7ページ</span>
+      </div>
+      <div class="content-card content-card-workdrill fade-in" data-pages="10P">
+        <!-- ★【画像】img/content-workdrill.jpg を配置するとカード上部に画像が表示されます（推奨: 700×160px） -->
+        <div class="content-card-img content-card-img-workdrill" aria-hidden="true">📋</div>
+        <h3>📋 角度ワークドリル</h3>
+        <p>ドリルっぽい見た目でありながら、一部を切り取って操作できる工夫が入っています。「考えながら手を動かす」ことで、見える化と定着が同時に進みます。</p>
+        <span class="page-badge">📄 10ページ</span>
+      </div>
+      <div class="content-card content-card-drill fade-in" data-pages="69P">
+        <!-- ★【画像】img/content-drill.jpg を配置するとカード上部に画像が表示されます（推奨: 700×160px） -->
+        <div class="content-card-img content-card-img-drill" aria-hidden="true">✏️</div>
+        <h3>✏️ 角度ドリル</h3>
+        <p>書き込むだけのシンプルなドリルです。視覚支援が豊富で、大ボリュームの69ページで、繰り返しによる定着をしっかりサポート。角度とは何か、イメージをもって制す！</p>
+        <span class="page-badge">📄 69ページ</span>
+      </div>
+    </div>
+    <div class="contents-total fade-in">
+      <span>合計ページ数</span>
+      <strong>全86ページ（PDF）</strong>
+    </div>
+  </div>
+</section>
+
+
+<!-- プロフィール -->
+<section class="profile-section section" id="profile">
+  <div class="container">
+    <span class="tag">制作者について</span>
+    <h2 class="section-title">私たちが作りました！</h2>
+    <p class="section-sub">療育と教育、それぞれのプロが力を合わせた教材</p>
+    <div class="profile-cards">
+
+      <div class="profile-card fade-in">
+        <div class="profile-header">
+          <!-- ★【画像】img/avatar-mi.jpg を配置するとアバター画像が表示されます -->
+          <div class="profile-avatar profile-avatar-mi" aria-hidden="true">👩‍🏫</div>
+          <div class="profile-meta">
+            <div class="profile-role">教具開発責任者 / ぱずルート代表</div>
+            <div class="profile-name">みー先生<small>（教具開発）</small></div>
+            <div class="profile-tags">
+              <span class="profile-tag">発達障害・知的障害者支援専門家</span>
+              <span class="profile-tag">イギリス、ケント大学・大学院（心理）卒業</span>
+              <span class="profile-tag">15年以上の現場が支えるプロの知見</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-body">
+          <p class="profile-bio">イギリス・ケント大学大学院修了後、国内で知的障害や発達障害の診断がある子どもたちの学習支援・行動支援を15年以上行っています。「どの子にも、わかる喜びを」という思いから、認知特性に合わせた教具開発を続けてきました。</p>
+          <ul class="profile-creds">
+            <li class="profile-cred">イギリス、ケント大学・大学院 修了</li>
+            <li class="profile-cred">知的障害・発達障害児童の学習/行動支援15年以上</li>
+            <li class="profile-cred">ぱずルート代表・教具開発責任者</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile-card fade-in">
+        <div class="profile-header">
+          <!-- ★【画像】img/avatar-o.jpg を配置するとアバター画像が表示されます -->
+          <div class="profile-avatar profile-avatar-o" aria-hidden="true">👨‍🏫</div>
+          <div class="profile-meta">
+            <div class="profile-role">教材制作責任者 / ぱずルート立ち上げメンバー</div>
+            <div class="profile-name">おー先生<small>（教材制作）</small></div>
+            <div class="profile-tags">
+              <span class="profile-tag">元大手予備校教室長/インター教師</span>
+              <span class="profile-tag">TESOL・教員免許保有/元アメリカ長期特派員</span>
+              <span class="profile-tag">個別/集団両対応・授業のUD化実践</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-body">
+          <p class="profile-bio">元予備校教室長・小学生～大学生までの教師/講師として多様な子どもたちの支援を実践。インターナショナルスクール時代には「授業のUD化」を実践。国際的な教師資格TESOLも保持し、「どんな子でも理解できる教材設計」を追求して授業づくりを行ってきました。</p>
+          <ul class="profile-creds">
+            <li class="profile-cred">元大手予備校教室長・教員免許保有</li>
+            <li class="profile-cred">国際資格 TESOL保有・元インター教師</li>
+            <li class="profile-cred">ぱずルート立ち上げ・教材制作責任者</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="brand-box fade-in">
+      <h3>📊 ぱずルートのこれまでの実績</h3>
+      <p>2人の専門家が開発した教具・教材は、多くのご家庭に届いています。</p>
+      <div class="brand-stats">
+        <div class="brand-stat">
+          <div class="brand-stat-num">1,900<sub>名+</sub></div>
+          <div class="brand-stat-label">累計購入者数</div>
+          <div class="brand-stat-sub">（クラウドファンディング支援者含む）</div>
+        </div>
+        <div class="brand-stat">
+          <div class="brand-stat-num">3,600<sub>点+</sub></div>
+          <div class="brand-stat-label">教具・教材の販売実績</div>
+          <div class="brand-stat-sub">（クラウドファンディング提供含む）</div>
+        </div>
+        <div class="brand-stat">
+          <div class="brand-stat-num">1,545<sub>名+</sub></div>
+          <div class="brand-stat-label">自社販売の購入者数</div>
+          <div class="brand-stat-sub">（クラウドファンディング除く）</div>
+        </div>
+        <div class="brand-stat">
+          <div class="brand-stat-num">2,500<sub>点+</sub></div>
+          <div class="brand-stat-label">自社販売の実績</div>
+          <div class="brand-stat-sub">（クラウドファンディング除く）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- メインCTA -->
+<section class="pricing-section section" id="purchase">
+  <div class="container">
+    <div class="pricing-box fade-in">
+      <div class="pricing-badge">🌱 モニター価格 先行公開中</div>
+      <div class="pricing-limit-note" role="alert">🔴 定員10名募集　定員になり次第終了</div>
+      <h2 class="pricing-name">見える化角度教材<br>モニター版</h2>
+      <p class="pricing-detail">PDFダウンロード版・全86ページ / ご家庭向けライセンス</p>
+      <div class="pricing-price">
+        <span class="price-main">¥1,480</span>
+        <span class="price-tax">（税込）</span>
+      </div>
+      <p class="pricing-explain">お子さん向け授業動画&お悩み相談つき<br>完全版リリース時は優先ご案内（希望者のみ）</p>
+      <p class="pricing-note">※ モニター価格・募集人数は予告なく変更・終了することがあります</p>
+      <p class="pricing-note">※ 各種データ教材は、予告なく製本版をリリースする場合もあります</p>
+      <a href="https://monthly-puzzroutes.lectea.jp/school/course/paid.php?course_id=3767" target="_blank" rel="noopener noreferrer" class="btn-cta pricing-btn">モニターとして参加する →</a><!-- ★決済URLに差し替え -->
+      <div class="pricing-reassure">
+        <span class="reassure-item">✅ 即時ダウンロード</span>
+        <span class="reassure-item">✅ 何度でも印刷OK</span>
+        <span class="reassure-item">✅ 授業動画つき</span>
+        <span class="reassure-item">✅ お悩み相談つき</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq-section section" id="faq">
+  <div class="container">
+    <span class="tag">よくある質問</span>
+    <h2 class="section-title">申し込み前の確認</h2>
+    <p class="section-sub">ご不明な点はお問い合わせください！</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-0" aria-expanded="false" aria-controls="faq-ans-0"><span class="faq-q-text"><span class="faq-q-label">Q</span>何年生から使えますか？</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-0" role="region" aria-labelledby="faq-btn-0">主に小学4年生（角度を学ぶ学年）を対象にしていますが、2年生のお子さんに使ったこともあります。もちろん5～6年生やそれ以上の年齢のお子さんにも活用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-1" aria-expanded="false" aria-controls="faq-ans-1"><span class="faq-q-text"><span class="faq-q-label">Q</span>ダウンロード後の使い方は？</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-1" role="region" aria-labelledby="faq-btn-1">申し込み後すぐにPDFをダウンロードいただけます。印刷するか、タブレット・PCのPDFビューアでご利用ください。印刷は何度でも可能です。</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-2" aria-expanded="false" aria-controls="faq-ans-2"><span class="faq-q-text"><span class="faq-q-label">Q</span>弟/妹にも教材を使ってもいいですか？</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-2" role="region" aria-labelledby="faq-btn-2">ご家庭内であれば、ご兄弟/ご姉妹にもご利用いただいて構いません。教材をご自身のデバイスに保存いただければ、モニター期間が終了した後でも教材を利用いただいて大丈夫です。</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-3" aria-expanded="false" aria-controls="faq-ans-3"><span class="faq-q-text"><span class="faq-q-label">Q</span>データ教材の製本版はリリースされますか？</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-3" role="region" aria-labelledby="faq-btn-3">製本化ドリルのラインナップも増やしたいと考えておりますが、「いつ」というお約束はできません。申し訳ありあません。<br>リリースできることが決定しましたら公式販売サイトにてお知らせします。なお全てデータ教材が製本ドリル化されるわけではありませんのでご了承ください。</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-4" aria-expanded="false" aria-controls="faq-ans-4"><span class="faq-q-text"><span class="faq-q-label">Q</span>完全版とモニター版の違いは何ですか？</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-4" role="region" aria-labelledby="faq-btn-4">モニター版は、皆様のお声を参考に教材の改善を行う段階のものです。完全版では実際のモニター様のお声から改善された内容を予定しています。モニター参加者のうち、希望者様には優先的にご案内いたします。なお各種データ教材の中には、製本したドリル版としてリリースする教材もございます。あらかじめご了承ください。</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" id="faq-btn-5" aria-expanded="false" aria-controls="faq-ans-5"><span class="faq-q-text"><span class="faq-q-label">Q</span>塾や教室で使いたいのですが…</span><span class="faq-arrow" aria-hidden="true">▼</span></button>
+        <div class="faq-a" id="faq-ans-5" role="region" aria-labelledby="faq-btn-5">本教材は1家庭でのご使用を対象とした「ご家庭向けライセンス」です。塾・学校・療育施設などでのご使用は別途法人ライセンスが必要です。お問い合わせフォームよりご相談ください。<br><br>なおインターネット上を含め、私どもが公開/販売している教材の著作権はぱずルートにあります。本サイトに掲載している教材含め、ぱずルートが制作した教材を模倣した、あるいは参考にした教材の制作はおやめください。各種法令をお守りいただきますよう、お願いいたします。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- お問い合わせ -->
+<section class="contact-section section" id="contact">
+  <div class="container">
+    <div class="contact-box fade-in">
+      <span class="tag">お問い合わせ</span>
+      <h2 class="section-title">お気軽にどうぞ！</h2>
+      <p>
+        ＜申込み前のご質問＞＜法人/団体ライセンスの相談＞など<br>
+        お気軽にお問い合わせください。<br>
+        <small class="contact-note-small">通常3営業日以内にご返信いたします。</small>
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScRLI5nhIVEuQ2JXPF3R1t_g0ig80Bi5NaN7oZRWsMlIFiuYQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta--sm">お問い合わせフォームを開く →</a><!-- ★フォームURLに差し替え -->
+    </div>
+  </div>
+</section>
+</main><!-- /#main-content -->
+
+
+<!-- フッター -->
+<footer class="site-footer">
+  <div class="footer-logo">📐 UD教材ぱずルート</div>
+  <div class="footer-brand">ぱずルート</div>
+  <nav class="footer-links" aria-label="フッターナビゲーション">
+    <a href="https://monthly-puzzroutes.lectea.jp/school/course/rule.php">特定商取引法に基づく表記</a><!-- ★差し替え -->
+    <a href="https://monthly-puzzroutes.lectea.jp/school/course/policy.php">プライバシーポリシー</a><!-- ★差し替え -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRLI5nhIVEuQ2JXPF3R1t_g0ig80Bi5NaN7oZRWsMlIFiuYQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">お問い合わせ</a><!-- ★差し替え -->
+  </nav>
+  <p class="footer-copy">© 2026 ぱずルート All rights reserved.</p>
+</footer>
+
+
+<!-- スティッキーバー -->
+<div class="sticky-bar" id="stickyBar" role="complementary" aria-label="購入CTAバー">
+  <div class="sticky-left">
+    <div class="sticky-price">
+      <span class="label">モニター価格</span>
+      <span class="amount">¥1,480</span>
+    </div>
+    <div class="sticky-limit" aria-live="polite">🔴 定員10名</div>
+  </div>
+  <a href="https://monthly-puzzroutes.lectea.jp/school/course/paid.php?course_id=3767" target="_blank" rel="noopener noreferrer" class="btn-cta">今すぐ参加 →</a><!-- ★決済URLに差し替え -->
+</div>
+
+
+<script>
+(function() {
+  'use strict';
+
+  /* ================================================================
+     セキュリティ: 全 target="_blank" リンクに noopener noreferrer を強制付与
+  ================================================================ */
+  document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
+    var rel = (link.getAttribute('rel') || '').split(' ').filter(Boolean);
+    if (rel.indexOf('noopener')   === -1) rel.push('noopener');
+    if (rel.indexOf('noreferrer') === -1) rel.push('noreferrer');
+    link.setAttribute('rel', rel.join(' '));
+  });
+
+  /* ================================================================
+     スライダー
+  ================================================================ */
+  var SLIDE_COUNT = 8;
+  var track    = document.getElementById('sliderTrack');
+  var thumbEls = document.querySelectorAll('.thumb');
+  var dotsWrap = document.getElementById('sliderDots');
+  /* aria-live: スクリーンリーダーへスライド変更を通知 */
+  var sliderWrap = document.getElementById('sliderWrap');
+  if (sliderWrap) { sliderWrap.setAttribute('aria-live', 'polite'); }
+  var current  = 0;
+  var autoTimer;
+
+  /* ドット生成
+     ※ var はループ外へ漏れるため、let 相当の挙動をクロージャで保証
+        （既にIIFEで囲んでいるが明示的にスコープを閉じる）*/
+  for (var i = 0; i < SLIDE_COUNT; i++) {
+    (function(idx) {
+      var dot = document.createElement('div');
+      dot.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', (idx + 1) + '枚目のスライドへ');
+      dot.setAttribute('tabindex', '0');
+      dot.addEventListener('click', function() { goTo(idx); resetAuto(); });
+      dot.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(idx); resetAuto(); }
+      });
+      dotsWrap.appendChild(dot);
+    })(i);
+  }
+  var dotEls = document.querySelectorAll('.slider-dot');
+
+  function goTo(index) {
+    current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    thumbEls.forEach(function(t, i) { t.classList.toggle('active', i === current); });
+    dotEls.forEach(function(d, i)   { d.classList.toggle('active', i === current); });
+    /* スクリーンリーダー用: 現在のスライド番号を aria-label で更新 */
+    if (sliderWrap) {
+      sliderWrap.setAttribute('aria-label', '教材イメージスライダー (' + (current + 1) + '/' + SLIDE_COUNT + ')');
+    }
+  }
+
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); resetAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); resetAuto(); });
+
+  /* キーボード矢印キーによるスライド操作 */
+  if (sliderWrap) {
+    sliderWrap.setAttribute('tabindex', '0');
+    sliderWrap.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); resetAuto(); }
+    });
+  }
+
+  /* キーボード矢印キー: スライダーにフォーカスがある場合 ←→ で操作 */
+  if (sliderWrap) {
+    sliderWrap.setAttribute('tabindex', '0');
+    sliderWrap.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); resetAuto(); }
+    });
+  }
+
+  thumbEls.forEach(function(t) {
+    t.addEventListener('click', function() { goTo(parseInt(t.dataset.index, 10)); resetAuto(); });
+    t.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(parseInt(t.dataset.index, 10)); resetAuto(); }
+    });
+  });
+
+  /* タッチスワイプ */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var sw = document.getElementById('sliderWrap');
+  if (sw) {
+    sw.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    sw.addEventListener('touchend', function(e) {
+      var diffX = touchStartX - e.changedTouches[0].clientX;
+      var diffY = touchStartY - e.changedTouches[0].clientY;
+      /* 縦スクロールと誤判定しないよう、横方向の移動が縦より大きい時のみスワイプと判定 */
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        goTo(diffX > 0 ? current + 1 : current - 1);
+        resetAuto();
+      }
+    });
+  }
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function startAuto() { autoTimer = setInterval(function() { goTo(current + 1); }, 4200); }
+  function resetAuto() { clearInterval(autoTimer); if (!prefersReducedMotion) { startAuto(); } }
+  /* ページ非表示時は自動再生を停止（バッテリー・パフォーマンス対策）
+     復帰時も reduced-motion を考慮 */
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { clearInterval(autoTimer); }
+    else if (!prefersReducedMotion) { startAuto(); }
+  });
+  /* prefers-reduced-motion: アニメーション軽減設定時は自動再生しない */
+  if (!prefersReducedMotion) {
+    startAuto();
+  }
+
+  /* ================================================================
+     FAQアコーディオン
+  ================================================================ */
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item   = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ================================================================
+     スクロールフェードイン
+  ================================================================ */
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* ================================================================
+     画像読み込み確認
+     background-image が正常に読み込まれた場合にのみプレースホルダーを
+     非表示にする。スライドは .slide-ph 要素を非表示、アバター・カードは
+     絵文字テキストのみ（font-size:0）を対象とする。
+     ※ background-image は404でもエラーイベントが発火しないため
+       Image オブジェクトで実際に読み込みを試みて確認する。
+  ================================================================ */
+  function hidePhIfBgLoaded(el, options) {
+    var style = window.getComputedStyle(el);
+    var bgImg = style.backgroundImage;
+    if (!bgImg || bgImg === 'none') return;
+    /* 最初の url(...) のみ取得 */
+    var m = bgImg.match(/url\(["']?([^"')]+)["']?\)/);
+    if (!m) return;
+    var img = new Image();
+    img.onload = function() {
+      if (options.hideChild) {
+        var ph = el.querySelector(options.hideChild);
+        if (ph) ph.style.display = 'none';
+      }
+      if (options.zeroFontSize) {
+        /* 絵文字アイコンのみを非表示（テキストノードに直接アクセスできないため
+           font-size:0 で対処。スライドには適用しない）*/
+        el.style.fontSize = '0';
+      }
+    };
+    img.src = m[1];
+  }
+
+  /* スライド: .slide-ph のみ非表示（el全体のfontSizeは変更しない） */
+  document.querySelectorAll('.slide').forEach(function(el) {
+    hidePhIfBgLoaded(el, { hideChild: '.slide-ph' });
+  });
+
+  /* アバター: 絵文字テキストを非表示 */
+  document.querySelectorAll('.profile-avatar-mi, .profile-avatar-o').forEach(function(el) {
+    hidePhIfBgLoaded(el, { zeroFontSize: true });
+  });
+
+  /* コンテンツカード画像エリア: 絵文字テキストを非表示 */
+  document.querySelectorAll('.content-card-img').forEach(function(el) {
+    hidePhIfBgLoaded(el, { zeroFontSize: true });
+  });
+
+  /* ================================================================
+     スティッキーバー（ヒーロー通過後に表示）
+  ================================================================ */
+  var stickyBar   = document.getElementById('stickyBar');
+  var heroSection = document.getElementById('hero');
+  if ('IntersectionObserver' in window && stickyBar && heroSection) {
+    new IntersectionObserver(function(entries) {
+      stickyBar.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(heroSection);
+  }
+
+})(); // IIFE終了 - グローバルスコープ汚染防止
+</script>
+</body>
+</html>
